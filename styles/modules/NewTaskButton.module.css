@@ -1,0 +1,13 @@
+.newTaskButton{
+    margin-top: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items:flex-start;
+    border-radius: 24px;
+    background-color: rgba(95, 8, 110, 0.35);
+}
+
+.newTaskButton:hover{
+    background-color: rgba(205, 15, 236, 0.37);
+}

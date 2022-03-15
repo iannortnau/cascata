@@ -1,0 +1,25 @@
+.userIdentifier{
+    border-radius: 24px;
+    background-color: rgba(95, 8, 110, 0.35);
+    padding: 0px 8px;
+}
+
+.userName {
+    font-size: 18px;
+    color: white;
+    font-family: serif;
+}
+
+
+.adm{
+    padding: 0px 4px;
+    margin-left: 8px;
+    border-radius: 20px;
+    background-color: rgba(95, 8, 110, 0.35);
+}
+
+.admText{
+    font-family: serif;
+    color: white;
+    font-size: 12px;
+}

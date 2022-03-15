@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Anotacao {
+  id     Int    @id @default(autoincrement())
+  tarefa Int
+  texto  String @db.VarChar(1000)
+  Tarefa Tarefa @relation(fields: [tarefa], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Anotacao_fk0")
+
+  @@index([tarefa], map: "Anotacao_fk0")
+}
+
+model Categoria {
+  id         Int        @id @default(autoincrement())
+  descricao  String     @db.VarChar(1000)
+  prioridade Int
+  Prioridade Prioridade @relation(fields: [prioridade], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Categoria_fk0")
+  Tarefa     Tarefa[]
+
+  @@index([prioridade], map: "Categoria_fk0")
+}
+
+model Prioridade {
+  id        Int         @id @default(autoincrement())
+  descricao Int
+  valor     Int         @unique(map: "valor")
+  Categoria Categoria[]
+  Tarefa    Tarefa[]
+}
+
+model Tarefa {
+  id          Int        @id @default(autoincrement())
+  usuario     Int
+  nome        String     @db.VarChar(1000)
+  categoria   Int
+  prioridade  Int
+  situacao    String     @db.VarChar(100)
+  data_limite DateTime?  @map("data-limite") @db.Date
+  Categoria   Categoria  @relation(fields: [categoria], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Tarefa_fk1")
+  Prioridade  Prioridade @relation(fields: [prioridade], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Tarefa_fk2")
+  Usuario     Usuario    @relation(fields: [usuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Tarefa_fk0")
+  Anotacao    Anotacao[]
+
+  @@index([usuario], map: "Tarefa_fk0")
+  @@index([categoria], map: "Tarefa_fk1")
+  @@index([prioridade], map: "Tarefa_fk2")
+}
+
+model Usuario {
+  id            Int      @id @default(autoincrement())
+  nome_completo String   @map("nome-completo") @db.VarChar(1000)
+  user          String   @db.VarChar(1000)
+  senha         String   @db.VarChar(1000)
+  perfil        String?  @db.VarChar(1000)
+  Tarefa        Tarefa[]
+}
