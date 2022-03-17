@@ -1,0 +1,26 @@
+.Button{
+    width: 80%;
+    margin-top: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items:center;
+    border-radius: 24px;
+    background-color: rgba(95, 8, 110, 0.35);
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.Button:hover{
+    background-color: rgba(205, 15, 236, 0.37);
+}
+
+.text {
+    font-family: serif;
+    font-size: 24px;
+    color: white;
+    margin-left: 10px;
+    margin-top:5px;
+    margin-bottom: 5px;
+}

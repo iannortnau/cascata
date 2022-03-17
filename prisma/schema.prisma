@@ -28,7 +28,7 @@ model Categoria {
 
 model Prioridade {
   id        Int         @id @default(autoincrement())
-  descricao Int
+  descricao String      @db.VarChar(1000)
   valor     Int         @unique(map: "valor")
   Categoria Categoria[]
   Tarefa    Tarefa[]
@@ -58,5 +58,9 @@ model Usuario {
   user          String   @db.VarChar(1000)
   senha         String   @db.VarChar(1000)
   perfil        String?  @db.VarChar(1000)
+  token         String?  @db.VarChar(1000)
+  emailToken    String?  @db.VarChar(1000)
+  isVerified    Boolean  @default(false)
+  email         String   @db.VarChar(1000)
   Tarefa        Tarefa[]
 }

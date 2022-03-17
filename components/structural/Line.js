@@ -1,8 +1,10 @@
 import styles from '../../styles/modules/Line.module.css'
 
 export default function Line(props) {
+    const width = props.width;
+    const justifyContent = props.justifyContent;
     return (
-        <div className={styles.line} style={{width:props.width,justifyContent:props.justifyContent||"space-around"}}>
+        <div className={styles.line} style={{width:width,justifyContent:justifyContent||"space-around"}}>
             {props.children}
         </div>
     )

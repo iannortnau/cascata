@@ -1,4 +1,30 @@
 .task{
+    display: flex;
+    flex-direction: column;
     width:100%;
     background-color: #2b004d;
+    padding:4px;
+    border-radius: 24px;
+}
+
+.taskName{
+    margin: 0 0 0 8px;
+    font-size:16px;
+    font-weight:bold;
+    color:white;
+    font-family: serif;
+    width: 100px;
+    background-color: transparent;
+    border-style: none;
+}
+
+.taskDescription{
+    width: 90%;
+    background-color: rgba(67, 0, 107, 0.78);
+    border-radius: 24px;
+    border-style: none;
+    padding:10px;
+    color:white;
+    text-align: center;
+
 }
