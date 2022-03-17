@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import '../styles/w3.css'
 import Head from 'next/head'
-import {AuthContext, AuthProvider} from "../contexts/AuthContext";
+import {AuthProvider} from "../contexts/AuthContext";
 
 function MyApp({ Component, pageProps}) {
     return (

@@ -5,6 +5,7 @@ import * as icon from "../public/icons/plus.png";
 import UserIdentifier from "./structural/UserIdentifier";
 
 export default function NewTaskButton(props) {
+
     return (
         <div
             className={styles.newTaskButton}

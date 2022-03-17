@@ -10,18 +10,17 @@ import Task from "../components/Task";
 import {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
 import Button from "../components/structural/Button";
-import Block from "../components/structural/Block";
 import Column from "../components/structural/Column";
 import { useRouter } from 'next/router'
+import LoadSpin from "../components/structural/LoadSpin";
 
 export default function Home() {
     const router = useRouter();
+    const { isAutenticate, user, signIn, signOut, loading} = useContext(AuthContext);
 
-    const { isAutenticate, user, signIn, signOut} = useContext(AuthContext)
     return (
         <>
-            {isAutenticate
-                ?
+            {isAutenticate && !loading &&
                 <Page>
                     <MainCard>
                         <Header/>
@@ -59,27 +58,39 @@ export default function Home() {
                         </Panel>
                     </MainCard>
                 </Page>
-                :
-                <>
-                    <Page>
-                        <MainCard>
-                            <Column>
-                                <Button
-                                    text={"Criar Usuário"}
-                                    action={function () {
-                                        router.push("/createUser");
-                                    }}
-                                />
-                                <Button
-                                    text={"Logar"}
-                                    action={function () {
-                                        router.push("/login");
-                                    }}
-                                />
-                            </Column>
-                        </MainCard>
-                    </Page>
-                </>
+            }
+            {!isAutenticate && !loading &&
+                <Page>
+                    <MainCard>
+                        <Column
+                            height={"100%"}
+                        >
+                            <Button
+                                text={"Criar Usuário"}
+                                action={function () {
+                                    router.push("/createUser");
+                                }}
+                            />
+                            <Button
+                                text={"Logar"}
+                                action={function () {
+                                    router.push("/login");
+                                }}
+                            />
+                        </Column>
+                    </MainCard>
+                </Page>
+            }
+            {!isAutenticate && loading &&
+                <Page>
+                    <MainCard>
+                        <Column
+                            height={"100%"}
+                        >
+                            <LoadSpin/>
+                        </Column>
+                    </MainCard>
+                </Page>
             }
         </>
     )

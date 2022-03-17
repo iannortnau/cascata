@@ -12,19 +12,20 @@ export default function handler(req, res) {
     }
 
     async function getUserInfo() {
-        const users = await prisma.Usuario.findMany();
-        if (users) {
-            for (let i = 0; i < users.length; i++) {
-                if(users[i].email === req.body.email){
-                    if (req.body.password === users[i].senha) {
-                        res.status(200).json(users[i]);
-                    } else {
-                        res.status(400).end();
-                    }
-                    break
+        const user = await prisma.Usuario.findUnique({
+            where: {
+                email: req.body.email,
+            },
+        });
+
+        if (user) {
+            if(user.email === req.body.email){
+                if (req.body.password === user.senha) {
+                    res.status(200).json(user);
+                } else {
+                    res.status(400).end();
                 }
             }
-            res.status(400).end();
         } else {
             res.status(400).end();
         }

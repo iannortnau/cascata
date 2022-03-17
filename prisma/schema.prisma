@@ -58,9 +58,9 @@ model Usuario {
   user          String   @db.VarChar(1000)
   senha         String   @db.VarChar(1000)
   perfil        String?  @db.VarChar(1000)
-  token         String?  @db.VarChar(1000)
+  token         String?  @unique(map: "Usuario_token_uindex") @db.VarChar(200)
   emailToken    String?  @db.VarChar(1000)
   isVerified    Boolean  @default(false)
-  email         String   @db.VarChar(1000)
+  email         String   @unique(map: "Usuario_email_uindex") @db.VarChar(100)
   Tarefa        Tarefa[]
 }
